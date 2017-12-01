@@ -1,0 +1,25 @@
+CREATE DATABASE examen_tefa;
+
+CREATE TABLE public.producto
+(
+    id serial NOT NULL,
+    nombre text NOT NULL,
+    precio double precision NOT NULL,
+    tipo text NOT NULL,
+    CONSTRAINT pk_producto PRIMARY KEY (id)
+);
+
+CREATE TABLE public.compras
+(
+    id serial NOT NULL,
+    nombre_usuario text NOT NULL,
+    edad integer NOT NULL,
+    sexo text NOT NULL,
+    id_producto integer NOT NULL,
+    fecha date NOT NULL,
+    CONSTRAINT pk_compra PRIMARY KEY (id),
+    CONSTRAINT fk_producto FOREIGN KEY (id_producto)
+        REFERENCES public.producto (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+);
